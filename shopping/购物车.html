@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #app{
+            width: 54%;
+            /* height:100px; */
+            margin:100px auto 0;
+            /* background-color:green; */
+        }
+        table{
+            width: 100%;
+            border-spacing: 0;
+            background-color:#eee;
+            user-select:none;
+        }
+        .title{
+            background-color: #c36;
+        }
+        th{
+            width: 25%;
+            height:50px;
+            font-size:16px;
+            color:#fff;
+            text-align:center;
+            line-height:50px;
+        }
+        img{
+            display:block;
+            width: 120px;
+            margin:0 auto;
+            
+        }
+        .cont td{
+            padding:20px 0;
+            border-right:1px solid #000;
+            border-bottom:1px solid #000;
+        }
+        .cont td:nth-child(2),.cont td:nth-child(4){
+            text-align:center;
+            font-size:18px;
+        }
+        .cont td:nth-child(3){
+            padding-left:7%;
+        }
+        .cont td:nth-child(3) span{
+            display:inline-block;
+            width: 25px;
+            height:25px;
+            background-color: #ccc;
+            margin-right:-4px;
+            text-align:center;
+            cursor:pointer;
+        }
+        .cont td span:nth-child(2){
+            width: 50px;
+            background-color: #fff;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        {{des}}
+        <div>
+            <table>
+                <tr class="title">
+                    <th v-for="(item,index) in title">{{item}}</th>
+                </tr>
+                <tr class="cont" v-for="(item,jian,index) in json">
+                    <!-- {{item}} -->
+                    <td><img :src="json.img[index]" alt=""></td>
+                    <td>{{json.pic[index]}}</td>
+                    <td>
+                        <span>-</span>
+                        <span>{{json.num[index]}}</span>
+                        <span>+</span>
+                    </td>
+                    <td>
+                        {{json.subtotal[index]}}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <script>
+        //new 一个app实例
+        new Vue({
+            el:"#app",
+            data(){
+                return {
+                    des:"https://xxiaob.github.io/",
+                    title:["商品","单价","数量","小计"],
+                    json:{
+                        "img":['img/01.jpg',"img/02.jpg","img/03.jpg","img/04.jpg"],
+                        "pic":[8,10,20,30],
+                        "num":[0,0,0,0],
+                        "subtotal":[0,0,0,0]
+                    }
+                }
+            },
+           
+        })
+    </script>
+</body>
+</html>
