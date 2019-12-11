@@ -69,20 +69,19 @@
 </head>
 <body>
     <div id="app">
-        {{des}}
         <div>
             <table>
                 <tr class="title">
                     <th v-for="(item,index) in title">{{item}}</th>
                 </tr>
-                <tr class="cont" v-for="(item,jian,index) in json">
+                <tr class="cont" v-for="(item,jian,index) in json" @mouseenter="yiru">
                     <!-- {{item}} -->
                     <td><img :src="json.img[index]" alt=""></td>
                     <td>{{json.pic[index]}}</td>
                     <td>
-                        <span>-</span>
+                        <span v-on:click="jian">-</span>
                         <span>{{json.num[index]}}</span>
-                        <span>+</span>
+                        <span v-on:click="add">+</span>
                     </td>
                     <td>
                         {{json.subtotal[index]}}
@@ -99,16 +98,28 @@
             el:"#app",
             data(){
                 return {
-                    des:"https://xxiaob.github.io/",
+                    // des:"https://xxiaob.github.io/",
                     title:["商品","单价","数量","小计"],
                     json:{
                         "img":['img/01.jpg',"img/02.jpg","img/03.jpg","img/04.jpg"],
                         "pic":[8,10,20,30],
                         "num":[0,0,0,0],
-                        "subtotal":[0,0,0,0]
-                    }
+                        "subtotal":[0,0,0,0],
+                    },
+                    index:0
                 }
             },
+            methods:{
+                //当移入到tr的时候
+                yiru(){
+                    console.log(this)
+                },
+                //当点击加号的时候
+                add(){
+                    //获取单价
+                    console.log(this.json.pic)
+                }
+            }
            
         })
     </script>
